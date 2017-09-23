@@ -14,7 +14,7 @@ def _load_md(filename):
 
     return md
 
-def get_md(page):
+def fetch_markdown(page):
     if isinstance(page, (tuple, list)):
         md = [_load_md(p) for p in page]
     else:

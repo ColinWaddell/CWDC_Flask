@@ -1,13 +1,13 @@
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
-from tools.markdown import get_md
+from tools.markdown import fetch_markdown
 
 app = Flask(__name__)
 Bootstrap(app)
 
 @app.route("/")
 def index():
-    (title, projects, websites, contact, footer) = get_md(
+    (title, projects, websites, contact, footer) = fetch_markdown(
         ('title', 'projects', 'websites', 'contact', 'footer'))
     return render_template('index.html', **locals())
 
