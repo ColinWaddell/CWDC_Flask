@@ -6,27 +6,37 @@ app = Flask(__name__)
 Bootstrap(app)
 
 def load_md(filename):
-    f = open('content/%s.md' % filename, 'r')
-    raw_md = f.read()
+    try:
+        f = open('content/%s.md' % filename, 'r')
+        raw_md = f.read()
+    except FileNotFoundError:
+        f = open('content/404.md', 'r')
+        raw_md = f.read()
+        raw_md = raw_md.replace('{{page_title}}', filename)
+    
     md = Markup(markdown.markdown(raw_md))
+
     return md
 
 def get_md(page):
-    try:
+    if isinstance(page, (tuple, list)):
+        md = [load_md(p) for p in page]
+    else:
         md = load_md(page)
-    except FileNotFoundError:
-        md = load_md('404')
-
     return md
 
 @app.route("/")
 def index():
-    title = get_md('title')
-    projects = get_md('projects')
-    websites = get_md('websites')
-    contact = get_md('contact')
-    footer = get_md('footer')
+    (title, projects, websites, contact, footer) = get_md(
+        ('title', 'projects', 'websites', 'contact', 'footer'))
     return render_template('index.html', **locals())
+
+
+@app.route('/<path:path>')
+def catch_all(path):
+    content = get_md('projects')
+    print("hey")
+    return render_template('page.html', **locals())
 
 if __name__ == '__main__':
     app.jinja_env.auto_reload = True
