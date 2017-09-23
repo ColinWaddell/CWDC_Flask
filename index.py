@@ -5,19 +5,25 @@ from flask_bootstrap import Bootstrap
 app = Flask(__name__)
 Bootstrap(app)
 
+def load_md(filename):
+    f = open('content/%s.md' % filename, 'r')
+    raw_md = f.read()
+    print(raw_md)
+    md = Markup(markdown.markdown(raw_md))
+    return md
+
+def get_md(page):
+
+    try:
+        md = load_md(page)
+    except FileNotFoundError:
+        md = load_md('404')
+
+    return md
+
 @app.route("/")
 def index():
-    content = """
-Chapter
-=======
-
-Section
--------
-
-* Item 1
-* Item 2
-"""
-    content = Markup(markdown.markdown(content))
+    content = get_md('title')
     return render_template('index.html', **locals())
 
 if __name__ == '__main__':
