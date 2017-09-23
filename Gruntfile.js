@@ -1,6 +1,6 @@
 var staticPathPrefix = 'static',
     proxyUrl = 'localhost:5000';
-
+    
 module.exports = function (grunt) {
     grunt.initConfig({
         watch: {
@@ -24,13 +24,26 @@ module.exports = function (grunt) {
                     src : [
                         staticPathPrefix + '/css/*.css',
                         staticPathPrefix + '/js/*.js',
-                        'temapltes/*',
+                        'temaplates/*',
+                        'content/*.md',
                         '**/*.py'
                     ]
                 },
                 options: {
                     watchTask: true,
-                    proxy: proxyUrl
+                    proxy: proxyUrl,
+                    online: true,
+                    reloadDelay: 1000,
+                }
+            }
+        },
+        shell: {
+            flaskRun: {
+                command: 'source env/bin/activate && python index.py',
+                options: {
+                  stdout: true,
+                  failOnError: true,
+                  async: true
                 }
             }
         }
@@ -40,7 +53,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-browser-sync');
+    grunt.loadNpmTasks('grunt-shell-spawn');
 
     // define default task
-    grunt.registerTask('default', ['browserSync', 'watch']);
+    grunt.registerTask('default', ['shell:flaskRun', 'browserSync', 'watch']);
 };

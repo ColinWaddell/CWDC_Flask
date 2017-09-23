@@ -8,7 +8,6 @@ Bootstrap(app)
 def load_md(filename):
     f = open('content/%s.md' % filename, 'r')
     raw_md = f.read()
-    print(raw_md)
     md = Markup(markdown.markdown(raw_md))
     return md
 
