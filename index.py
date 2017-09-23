@@ -13,7 +13,6 @@ def load_md(filename):
     return md
 
 def get_md(page):
-
     try:
         md = load_md(page)
     except FileNotFoundError:
@@ -23,7 +22,11 @@ def get_md(page):
 
 @app.route("/")
 def index():
-    content = get_md('title')
+    title = get_md('title')
+    projects = get_md('projects')
+    websites = get_md('websites')
+    contact = get_md('contact')
+    footer = get_md('footer')
     return render_template('index.html', **locals())
 
 if __name__ == '__main__':
