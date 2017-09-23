@@ -8,7 +8,7 @@ def _load_md(filename):
     except FileNotFoundError:
         f = open('content/404.md', 'r')
         raw_md = f.read().replace('{{page_title}}', filename)
-    
+
     return Markup(markdown.markdown(raw_md))
 
 def fetch_markdown(page):

@@ -5,14 +5,37 @@
   <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
 {% endblock %}
 
-{% block content %}
-{{ title }}
+<div class="container-fluid">
 
-{{ projects }}
+  {% block navbar %}
+  <div class="row">
+    <div class="col-md-6">
+      {{ title }}
+    </div>
+  </div>
+  {% endblock %}
 
-{{ websites }}
+  {% block content %}
+    <div class="row">
+      <div class="col-md-4">
+        {{ projects }}
+      </div>
 
-{{ contact }}
+      <div class="col-md-4">
+        {{ websites }}
+      </div>
 
-{{ footer }}
-{% endblock %}
+      <div class="col-md-4">
+        {{ contact }}
+      </div>
+    </div>
+  {% endblock %}
+
+  {% block footer %}
+  <div class="row">
+    <div class="col-md-12">
+      {{ footer }}
+    </div>
+  </div>
+  {% endblock %}
+</div>
