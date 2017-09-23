@@ -1,29 +1,9 @@
-import markdown
-from flask import Flask, Markup, render_template
+from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
+from tools.markdown import get_md
 
 app = Flask(__name__)
 Bootstrap(app)
-
-def load_md(filename):
-    try:
-        f = open('content/%s.md' % filename, 'r')
-        raw_md = f.read()
-    except FileNotFoundError:
-        f = open('content/404.md', 'r')
-        raw_md = f.read()
-        raw_md = raw_md.replace('{{page_title}}', filename)
-    
-    md = Markup(markdown.markdown(raw_md))
-
-    return md
-
-def get_md(page):
-    if isinstance(page, (tuple, list)):
-        md = [load_md(p) for p in page]
-    else:
-        md = load_md(page)
-    return md
 
 @app.route("/")
 def index():
