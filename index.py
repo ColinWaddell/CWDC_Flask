@@ -13,7 +13,7 @@ def index():
 
 @app.route('/<path:path>')
 def catch_all(path):
-    content = get_md(path)
+    content = fetch_markdown(path)
     return render_template('page.html', **locals())
 
 if __name__ == '__main__':

@@ -7,16 +7,9 @@ def _load_md(filename):
         raw_md = f.read()
     except FileNotFoundError:
         f = open('content/404.md', 'r')
-        raw_md = f.read()
-        raw_md = raw_md.replace('{{page_title}}', filename)
+        raw_md = f.read().replace('{{page_title}}', filename)
     
-    md = Markup(markdown.markdown(raw_md))
-
-    return md
+    return Markup(markdown.markdown(raw_md))
 
 def fetch_markdown(page):
-    if isinstance(page, (tuple, list)):
-        md = [_load_md(p) for p in page]
-    else:
-        md = _load_md(page)
-    return md
+    return [_load_md(p) for p in page] if isinstance(page, (tuple, list)) else _load_md(page)
