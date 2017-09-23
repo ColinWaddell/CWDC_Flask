@@ -31,11 +31,9 @@ def index():
         ('title', 'projects', 'websites', 'contact', 'footer'))
     return render_template('index.html', **locals())
 
-
 @app.route('/<path:path>')
 def catch_all(path):
-    content = get_md('projects')
-    print("hey")
+    content = get_md(path)
     return render_template('page.html', **locals())
 
 if __name__ == '__main__':
