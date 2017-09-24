@@ -24,7 +24,7 @@ module.exports = function (grunt) {
                     src : [
                         staticPathPrefix + '/css/*.css',
                         staticPathPrefix + '/js/*.js',
-                        'temaplates/*',
+                        'templates/*.html',
                         'content/*.md',
                         '**/*.py'
                     ]
@@ -32,8 +32,7 @@ module.exports = function (grunt) {
                 options: {
                     watchTask: true,
                     proxy: proxyUrl,
-                    online: true,
-                    reloadDelay: 1000,
+                    online: true
                 }
             }
         },

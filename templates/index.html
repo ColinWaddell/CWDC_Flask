@@ -1,41 +1,50 @@
 {% extends "bootstrap/base.html" %}
 
+{% block title %}{{ title }}{% endblock %}
+
 {% block styles %}
 {{super()}}
   <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
 {% endblock %}
 
-<div class="container-fluid">
-
-  {% block navbar %}
+{% block content %}
+<div class="container">
   <div class="row">
-    <div class="col-md-6">
-      {{ title }}
+    <div class="col-md-6 blurb">
+      {{ blurb }}
     </div>
-  </div>
-  {% endblock %}
+  </div>  
 
-  {% block content %}
-    <div class="row">
-      <div class="col-md-4">
-        {{ projects }}
-      </div>
+  <hr />
 
-      <div class="col-md-4">
-        {{ websites }}
-      </div>
-
-      <div class="col-md-4">
-        {{ contact }}
-      </div>
-    </div>
-  {% endblock %}
-
-  {% block footer %}
   <div class="row">
-    <div class="col-md-12">
-      {{ footer }}
+    <div class="col-md-3">
+        <img src="static/img/colin_waddell.png" alt="Colin Waddell">
     </div>
-  </div>
-  {% endblock %}
+    
+    {% block page %}
+    <div class="col-md-3">
+      {{ projects }}
+    </div>
+
+    <div class="col-md-3">
+      {{ websites }}
+    </div>
+
+    <div class="col-md-3">
+      {{ contact }}
+    </div>
+    {% endblock %}
+    </div>
+
+    {% block footer %}
+    <footer>
+      <div class="row">
+        <div class="col-md-12">
+          {{ footer }}
+        </div>
+      </div>
+    </footer>
+    {% endblock %}
 </div>
+{% endblock %}

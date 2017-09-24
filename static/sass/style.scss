@@ -1,4 +1,100 @@
-body {
+$orange : #e2ac67;
+$blue : #0fa0db;
+$lightBlue : #c9e6f1;
+$darkBlue: #2a6496;
 
-    
+@font-face {
+	font-family: 'BariolRegular';
+	src: url('../fonts/Bariol_Regular.eot');
+	src: local('Bariol_Regular'), 
+               url('../fonts/Bariol_Regular.woff') format('woff'), 
+               url('../fonts/Bariol_Regular.ttf') format('truetype');
+}
+/* use this class to attach this font to any element i.e. <p class="fontsforweb_fontid_25647">Text with this font applied</p> */
+.fontsforweb_fontid_25647 {
+	font-family: 'BariolRegular' !important;
+}
+
+body {
+  background: $lightBlue;
+  font-family: 'BariolRegular';
+  font-size: 20px;
+}
+
+hr {
+  border: 0;
+  border-bottom: 2px dashed $orange;
+}
+
+h1 {
+  font-size: 80px;
+  text-transform: lowercase;
+}
+
+h2 {
+  font-size: 54px;
+  text-transform: lowercase;
+}
+
+ul {
+  list-style: none;
+  padding: 0px;
+
+  li::before {
+    content: ">";
+    margin: 0 0.6em;
+  }
+}
+
+.blurb{
+
+  h1{
+    margin-bottom: 0;
+
+    & a{
+      color: #333;
+
+      &:hover{
+        text-decoration: none;
+        color: #666;
+      }
+    }
+  }
+
+  h2{
+    color: $darkBlue;
+    margin-top: 0;
+
+    & a:hover{
+      text-decoration: none;
+    }   
+
+    &:after{
+      display: inline-block;
+      width: .45em;
+      height: 0.85em;
+      background: $lightBlue;
+      content: ' ';
+      margin-left: 0.17em;  
+      animation: blink 1.5s step-start 0s infinite;
+      -webkit-animation: blink 1.5s step-start 0s infinite;  
+      -moz-animation: blink 1.5s step-start 0s infinite;  
+      margin-bottom: -3px;
+    }
+  }
+}
+
+footer {
+  margin-top: 30px;
+}
+
+@keyframes blink {  
+  0% { background: $blue; }
+  50% { background: $lightBlue; }
+  100% { background: $blue; }
+}
+@-webkit-keyframes blink {
+  0% { background: $blue; }
+  50% { background: $lightBlue; }
+  100% { background: $blue; }
 }
