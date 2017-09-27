@@ -1,6 +1,14 @@
 {% extends "./index.html" %}
 
 {% block page %}
-{{ moment(last_edited).pretty_time() }}
-{{ content }}
+
+  {% if page_details %}
+    <div class="pull-right page-details">{{file_created}}
+      <p>Created:<br /><span class="datetime">{{ moment(page_details.created).pretty_time() }}</span></p>
+      <p>Edited:<br /><span class="datetime">{{ moment(page_details.edited).pretty_time() }}</span></p>
+    </div>
+  {% endif %}
+
+  {{ content }}
+
 {% endblock %}

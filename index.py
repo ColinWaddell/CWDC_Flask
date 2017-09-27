@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 from tools.markdown import fetch_markdown, render_template_and_markdown
 from tools.publishing_details import get_page_details
 from tools.moment import moment
+import sys
 
 SITE_TITLE = 'ColinWaddell.com'
 
@@ -20,9 +21,9 @@ def catch_all(path):
     context = {
         'title': '%s :: %s' % (SITE_TITLE, path),
         'content': fetch_markdown(path),
+        'page_details': get_page_details(path)
     }
-    context.update(get_page_details(path))
-
+    
     return render_template_and_markdown('page.html',
         ('blurb', 'footer'), context)
 

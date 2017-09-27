@@ -4,7 +4,7 @@ from time import gmtime, strftime
 class moment(object):
  
     def __init__(self, timestamp=None):
-        self.timestamp = timestamp if timestamp else gmtime()
+        self.timestamp = timestamp
  
     def pretty_time(self):
-        return Markup(strftime('%m/%d/%Y', gmtime(self.timestamp)))
+        return Markup(strftime('%d/%m/%Y', gmtime(self.timestamp)))

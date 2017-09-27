@@ -5,7 +5,8 @@ def get_page_details(page):
   filename = 'content/%s.md' % page
   try:
     return {
-      'last_edited': os.path.getmtime(filename)
+      'edited': os.path.getmtime(filename),
+      'created': os.path.getctime(filename)
     }
 
   except FileNotFoundError:
