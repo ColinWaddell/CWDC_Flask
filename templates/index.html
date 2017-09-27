@@ -13,7 +13,7 @@
     <div class="col-md-6 blurb">
       {{ blurb }}
     </div>
-    <div class="col-md-4 col-md-offset-2 links">
+    <div class="col-md-4 col-md-offset-2 hidden-xs links">
       {% include 'links.html' %}
     </div>
   </div>  
@@ -38,6 +38,10 @@
       {{ contact }}
     </div>
     {% endblock %}
+    </div>
+
+    <div class="visible-xs links">
+      {% include 'links.html' %}
     </div>
 
     {% block footer %}
