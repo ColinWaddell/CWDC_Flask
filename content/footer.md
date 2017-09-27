@@ -1,1 +1,1 @@
-Colin Waddell {{year}}
+[Colin Waddell](/) {{year}}
