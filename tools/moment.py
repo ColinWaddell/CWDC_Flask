@@ -7,4 +7,4 @@ class moment(object):
         self.timestamp = timestamp
  
     def pretty_time(self):
-        return Markup(strftime('%d/%m/%Y', gmtime(self.timestamp)))
+        return Markup(strftime('%H:%m - %d/%m/%Y', gmtime(self.timestamp)))

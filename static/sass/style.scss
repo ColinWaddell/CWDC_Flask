@@ -101,8 +101,14 @@ footer {
 
 .page-details {
 
+  p {
+    font-weight: bold;
+    margin: 0;
+    line-height: initial;
+  }
+
   .datetime{
-    font-size: 8px;
+    font-size: 14px;
   }
 
 }

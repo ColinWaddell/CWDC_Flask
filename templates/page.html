@@ -1,14 +1,18 @@
 {% extends "./index.html" %}
 
 {% block page %}
+  <div class="col-md-9">
+    {% if page_details %}
+      <div class="pull-right page-details">{{file_created}}
+        {% if page_details.edited %}
+          <button class="btn btn-default" aria-label="Edited">
+            {{ moment(page_details.edited).pretty_time() }} &nbsp;
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+          </button>  
+        {% endif %}
+      </div>
+    {% endif %}
 
-  {% if page_details %}
-    <div class="pull-right page-details">{{file_created}}
-      <p>Created:<br /><span class="datetime">{{ moment(page_details.created).pretty_time() }}</span></p>
-      <p>Edited:<br /><span class="datetime">{{ moment(page_details.edited).pretty_time() }}</span></p>
-    </div>
-  {% endif %}
-
-  {{ content }}
-
+    {{ content }}
+  </div>
 {% endblock %}
