@@ -1,24 +1,30 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, render_template_string
 from flask_bootstrap import Bootstrap
-from tools.markdown import fetch_markdown
+from tools.markdown import fetch_markdown, render_template_and_markdown
+from tools.publishing_details import get_page_details
+from tools.moment import moment
 
 SITE_TITLE = 'ColinWaddell.com'
 
 app = Flask(__name__)
+app.jinja_env.globals['moment'] = moment
 Bootstrap(app)
 
 @app.route("/")
 def index():
-    title = '%s :: Home' % SITE_TITLE
-    (blurb, projects, websites, contact, footer) = fetch_markdown(
-        ('blurb', 'projects', 'websites', 'contact', 'footer'))
-    return render_template('index.html', **locals())
+    return render_template_and_markdown('index.html',
+        ('blurb', 'projects', 'websites', 'contact', 'footer'), {'title': '%s :: Home' % SITE_TITLE})
 
 @app.route('/<path:path>')
 def catch_all(path):
-    title = '%s :: %s' % (SITE_TITLE, path)
-    (blurb, content) = fetch_markdown(('blurb', path))
-    return render_template('page.html', **locals())
+    context = {
+        'title': '%s :: %s' % (SITE_TITLE, path),
+        'content': fetch_markdown(path),
+    }
+    context.update(get_page_details(path))
+
+    return render_template_and_markdown('page.html',
+        ('blurb', 'footer'), context)
 
 if __name__ == '__main__':
     app.jinja_env.auto_reload = True

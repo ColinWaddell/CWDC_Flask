@@ -1,1 +1,1 @@
-Colin Waddell 2017
+Colin Waddell {{year}}

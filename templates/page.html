@@ -1,5 +1,6 @@
 {% extends "./index.html" %}
 
 {% block page %}
-  {{ content }}
+{{ moment(last_edited).pretty_time() }}
+{{ content }}
 {% endblock %}

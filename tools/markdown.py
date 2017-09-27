@@ -1,5 +1,10 @@
 import markdown
-from flask import Markup
+from flask import Markup, render_template, render_template_string
+
+def _helpers():
+    return {
+        'year': 2017
+    }
 
 def _load_md(filename):
     try:
@@ -13,3 +18,10 @@ def _load_md(filename):
 
 def fetch_markdown(page):
     return [_load_md(p) for p in page] if isinstance(page, (tuple, list)) else _load_md(page)
+
+def render_template_and_markdown(template_name, pages, context={}):
+    context.update({ title:fetch_markdown(title) for title in pages })
+    context.update(_helpers())
+    context.update(context)
+    pre_render = render_template(template_name, **context)
+    return render_template_string(pre_render, **context)
