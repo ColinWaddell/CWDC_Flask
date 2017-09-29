@@ -4,3 +4,5 @@
  - [gear bikes](http://gearbikes.com/)
  - [7 crown gardens](http://7crowngardens.co.uk/)
  - [glasgow urban sports](http://glasgowurbansports.co.uk/)
+ - [fish dentistry](http://www.andrewfish.co.uk)
+ - [ian sexon](http://iansexon.co.uk/)

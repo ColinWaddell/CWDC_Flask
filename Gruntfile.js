@@ -38,7 +38,7 @@ module.exports = function (grunt) {
         },
         shell: {
             flaskRun: {
-                command: 'source env/bin/activate && python index.py',
+                command: '/bin/bash -c "source env/bin/activate && python index.py"',
                 options: {
                   stdout: true,
                   failOnError: true,
