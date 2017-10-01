@@ -3,6 +3,7 @@ env/
 run.sh
 *.pyc
 .vscode/
+key.py
 
 
 # Byte-compiled / optimized / DLL files

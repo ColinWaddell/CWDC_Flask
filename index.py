@@ -14,7 +14,10 @@ Bootstrap(app)
 @app.route("/")
 def index():
     return render_template_and_markdown('index.html',
-        ('blurb', 'projects', 'websites', 'contact', 'footer'), {'title': '%s :: Home' % SITE_TITLE})
+        ('blurb', 'projects', 'websites', 'contact', 'footer'), 
+        {
+            'title': '%s :: Home' % SITE_TITLE,
+        })
 
 @app.route('/<path:path>')
 def catch_all(path):
@@ -26,6 +29,7 @@ def catch_all(path):
     
     return render_template_and_markdown('page.html',
         ('blurb', 'footer'), context)
+
 
 if __name__ == '__main__':
     app.jinja_env.auto_reload = True
