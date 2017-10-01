@@ -4,8 +4,9 @@ from tools.markdown import fetch_markdown, render_template_and_markdown
 from tools.publishing_details import get_page_details
 from tools.moment import moment
 from key import SECRET_KEY
-from contact import ContactForm
+from contact import ContactForm, SendMessage
 import sys
+import json
 
 SITE_TITLE = 'ColinWaddell.com'
 
@@ -40,6 +41,7 @@ def contact():
     form = ContactForm()
     if request.method == 'POST':
         if form.validate_on_submit():
+            SendMessage(str(form.message.data))
             return grab_page('success')
         else:
             return grab_page('error')
