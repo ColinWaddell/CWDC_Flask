@@ -40,8 +40,9 @@ def grab_page(path):
 def contact():
     form = ContactForm()
     if request.method == 'POST':
-        if form.validate_on_submit():
-            SendMessage(str(form.message.data))
+        message = form.message.data
+        if form.validate_on_submit() and len(message) < 1000:
+            SendMessage(message)
             return grab_page('success')
         else:
             return grab_page('error')
