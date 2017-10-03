@@ -1,6 +1,6 @@
 ## Contact
 
-<form method="POST" action="/hello">
+<form method="POST" action="/contact">
   {{ form.csrf_token }}
   {{ form.message(class_="form-control", rows="6", maxlength="1000") }}
   <hr class="short"/>

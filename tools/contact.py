@@ -15,5 +15,5 @@ def SendMessage(message):
     msg["From"] = "mrcolin+server@gmail.com"
     msg["To"] = "mrcolin+server@gmail.com"
     msg["Subject"] = "WEBSITE CONTACT FORM"
-    p = Popen(["/usr/sbin/sendmail", "-t", "-oi"], stdin=PIPE)
+    p = Popen(["/usr/sbin/sendmail", "-t", "-oi", "-f", "mrcolin@colinwaddell.com"], stdin=PIPE)
     p.communicate(msg.as_bytes())
