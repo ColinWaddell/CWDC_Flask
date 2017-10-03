@@ -1,9 +1,10 @@
 import markdown
 from flask import Markup, render_template, render_template_string
+import time
 
 def _helpers():
     return {
-        'year': 2017
+        'year': time.strftime("%Y")
     }
 
 def _load_md(filename):
