@@ -1,37 +1,43 @@
-from flask import Flask, render_template, render_template_string, request
+''' My markdown powered homepage '''
+
+from flask import Flask, request
 from flask_bootstrap import Bootstrap
 from tools.markdown import fetch_markdown, render_template_and_markdown
 from tools.publishing_details import get_page_details
-from tools.moment import moment
-from key import SECRET_KEY
-from tools.contact import ContactForm, SendMessage
-import sys
-import json
+from tools.contact import ContactForm, send_message
+from tools.moment import Moment
+from settings import Settings
 
-SITE_TITLE = 'ColinWaddell.com'
-
+# Setup Flask
 app = Flask(__name__)
-app.jinja_env.globals['moment'] = moment
+app.secret_key = Settings.key
+app.jinja_env.globals['moment'] = Moment
 Bootstrap(app)
-app.secret_key = SECRET_KEY
 
 @app.route("/")
 def index():
+    ''' Handle hompage requests '''
     context = {
-        'title': '%s :: Home' % SITE_TITLE,
+        'title': '%s %s Home' % (Settings.title, Settings.spacer),
         'form': ContactForm()
     }
     return render_template_and_markdown('index.html',
-        ('blurb', 'projects', 'websites', 'contact', 'footer'), 
+        ('blurb', 'projects', 'websites', 'contact', 'footer'),
         context)
 
 @app.route('/contact', methods = ['GET', 'POST'])
 def contact():
+    ''' Deal with the contact form '''
     if request.method == 'POST':
         form = ContactForm()
         message = form.message.data
         if form.validate_on_submit() and len(message) < 1000:
-            SendMessage(message)
+            send_message(
+                message, 
+                Settings.email_from, 
+                Settings.email_to, 
+                Settings.email_subject
+            )
             return grab_page('success')
         else:
             return grab_page('error')
@@ -39,14 +45,13 @@ def contact():
         return grab_page('contact', {'form': ContactForm()})
 
 @app.route('/<path:path>')
-def grab_page(path, ctx=None):
-    context = {
-        'title': '%s :: %s' % (SITE_TITLE, path),
+def grab_page(path, extra_context=None):
+    ''' General purpose handler for individual page requests '''
+    context = dict({
+        'title': '%s %s %s' % (Settings.title, Settings.spacer, path),
         'content': fetch_markdown(path),
         'page_details': get_page_details(path)
-    }
-    if ctx:
-        context.update(ctx)
+    }, **extra_context if extra_context else {})
     
     return render_template_and_markdown('page.html',
         ('blurb', 'footer'), context)

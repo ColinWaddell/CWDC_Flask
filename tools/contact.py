@@ -1,19 +1,20 @@
-from flask import request, flash
-from flask_wtf import FlaskForm
-from wtforms import TextField, IntegerField, TextAreaField, SubmitField, RadioField, SelectField
-from wtforms import validators, ValidationError
+''' Contact forms and email scripts '''
 
-from email.mime.text import MIMEText
 from subprocess import Popen, PIPE
+from email.mime.text import MIMEText
+from flask_wtf import FlaskForm
+from wtforms import TextAreaField, SubmitField
 
 class ContactForm(FlaskForm):
-   message = TextAreaField("message")
-   submit = SubmitField("send")
+    ''' Very basic contact form '''
+    message = TextAreaField("message")
+    submit = SubmitField("send")
 
-def SendMessage(message):
+def send_message(message, email_from, email_to, subject):
+    ''' send an email via sendmail '''
     msg = MIMEText(message)
-    msg["From"] = "mrcolin+server@gmail.com"
-    msg["To"] = "mrcolin+server@gmail.com"
-    msg["Subject"] = "WEBSITE CONTACT FORM"
-    p = Popen(["/usr/sbin/sendmail", "-t", "-oi", "-f", "mrcolin@colinwaddell.com"], stdin=PIPE)
-    p.communicate(msg.as_bytes())
+    msg["From"] = email_from
+    msg["To"] = email_to
+    msg["Subject"] = subject
+    email = Popen(["/usr/sbin/sendmail", "-t", "-oi", "-f", "mrcolin@colinwaddell.com"], stdin=PIPE)
+    email.communicate(msg.as_bytes())

@@ -6,7 +6,7 @@
       <div class="pull-right page-details">{{file_created}}
         {% if page_details.edited %}
           <button class="btn btn-default" aria-label="Edited">
-            {{ moment(page_details.edited).pretty_time() }} &nbsp;
+            {{ moment(page_details.edited).pretty_datetime() }} &nbsp;
             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
           </button>  
         {% endif %}

@@ -1,6 +1,8 @@
-import markdown
-from flask import Markup, render_template, render_template_string
+''' Deal with the markdown pages '''
+
 import time
+from markdown import markdown
+from flask import Markup, render_template, render_template_string
 
 def _helpers():
     return {
@@ -9,20 +11,22 @@ def _helpers():
 
 def _load_md(filename):
     try:
-        f = open('content/%s.md' % filename, 'r')
-        raw_md = f.read()
+        file = open('content/%s.md' % filename, 'r')
+        raw_md = file.read()
     except FileNotFoundError:
-        f = open('content/404.md', 'r')
-        raw_md = f.read().replace('{{page_title}}', filename)
+        file = open('content/404.md', 'r')
+        raw_md = file.read().replace('{{page_title}}', filename)
 
-    return Markup(markdown.markdown(raw_md))
+    return Markup(markdown(raw_md))
 
 def fetch_markdown(page):
+    ''' Load either single, or list of pages '''
     return [_load_md(p) for p in page] if isinstance(page, (tuple, list)) else _load_md(page)
 
-def render_template_and_markdown(template_name, pages, context={}):
-    context.update({ title:fetch_markdown(title) for title in pages })
+def render_template_and_markdown(template_name, pages, context=None):
+    ''' Render page content into a template '''
+    context.update({title:fetch_markdown(title) for title in pages})
     context.update(_helpers())
-    context.update(context)
+    context.update(context if context else {})
     pre_render = render_template(template_name, **context)
     return render_template_string(pre_render, **context)
