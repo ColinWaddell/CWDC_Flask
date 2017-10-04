@@ -1,10 +1,10 @@
 Hello
 =====
-I've decided to port my site from wordpress to my own little [http://flask.pocoo.org/](Flask) cms.
+I've decided to port my site from wordpress to my own little [Flask](http://flask.pocoo.org/) cms.
 
 The idea is anything I want to edit or publish can be done through the ```content``` directory. For example. The file ```content/projects.md``` would be served up at ```colinwaddell.com/projects```. The look of the site is handled via ```templates```.
 
-Also bundled into this project is a ```Gruntfile.js``` which will allow you to serve the site using[https://www.browsersync.io/](BrowserSync). CSS is generated via sass which this ```Gruntfile.js``` also takes care of.
+Also bundled into this project is a ```Gruntfile.js``` which will allow you to serve the site using [BrowserSync](https://www.browsersync.io/). CSS is generated via sass which this ```Gruntfile.js``` also takes care of.
 
 Installation
 ============
@@ -14,14 +14,14 @@ git clone git@github.com:ColinWaddell/CWDC_Flask.git
 cd CWDC_Flask
 ```
 
-Setup a [http://docs.python-guide.org/en/latest/dev/virtualenvs/#lower-level-virtualenv](virtual environment):
+Setup a [virtual environment](http://docs.python-guide.org/en/latest/dev/virtualenvs/#lower-level-virtualenv):
 ```
 virtualenv env
 source env/bin/activate
 pip install -r requirements.txt
 ```
 
-Install all the [https://www.npmjs.com/](required tools):
+Install all the [required tools](https://www.npmjs.com/):
 ```
 npm install
 ```
