@@ -32,7 +32,7 @@ SECRET_KEY = 'something_random'
 ```
 **Be sure to avoid tracking this file in git.**
 
-Build all the css (this will be handled automatically when using the ```grunt``` command on its own):
+Build all the css. This would normally be handled automatically when using the ```grunt``` command on its own however since this site's just been installed best run it now:
 ```
 grunt sass
 ```
