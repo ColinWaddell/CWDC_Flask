@@ -26,6 +26,12 @@ Install all the [required tools](https://www.npmjs.com/):
 npm install
 ```
 
+You'll also need to create a file called ```./key.py``` and put in it:
+```
+SECRET_KEY = 'something_random'
+```
+**Be sure to avoid tracking this file in git.**
+
 Build all the css (this will be handled automatically when using the ```grunt``` command on its own):
 ```
 grunt sass
