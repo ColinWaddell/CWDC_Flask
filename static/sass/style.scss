@@ -24,6 +24,9 @@ body {
 hr {
   border: 0;
   border-bottom: 2px dashed $orange;
+  &.short {
+    margin: 12px 0;
+  }
 }
 
 h1 {
