@@ -5,10 +5,12 @@ from email.mime.text import MIMEText
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField, SubmitField
 
+
 class ContactForm(FlaskForm):
     ''' Very basic contact form '''
     message = TextAreaField("message")
     submit = SubmitField("send")
+
 
 def send_message(message, email_from, email_to, subject):
     ''' send an email via sendmail '''
@@ -16,5 +18,10 @@ def send_message(message, email_from, email_to, subject):
     msg["From"] = email_from
     msg["To"] = email_to
     msg["Subject"] = subject
-    email = Popen(["/usr/sbin/sendmail", "-t", "-oi", "-f", "mrcolin@colinwaddell.com"], stdin=PIPE)
+    email = Popen([
+        "/usr/sbin/sendmail",
+        "-t", "-oi", "-f",
+        "mrcolin@colinwaddell.com"],
+        stdin=PIPE
+    )
     email.communicate(msg.as_bytes())

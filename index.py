@@ -14,6 +14,7 @@ app.secret_key = Settings.key
 app.jinja_env.globals['moment'] = Moment
 Bootstrap(app)
 
+
 @app.route("/")
 def index():
     ''' Handle hompage requests '''
@@ -21,11 +22,13 @@ def index():
         'title': '%s %s Home' % (Settings.title, Settings.spacer),
         'form': ContactForm()
     }
-    return render_template_and_markdown('index.html',
-        ('blurb', 'projects', 'websites', 'contact', 'footer'),
-        context)
+    return render_template_and_markdown(
+            'index.html',
+            ('blurb', 'projects', 'websites', 'contact', 'footer'),
+            context)
 
-@app.route('/contact', methods = ['GET', 'POST'])
+
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
     ''' Deal with the contact form '''
     if request.method == 'POST':
@@ -44,6 +47,7 @@ def contact():
     else:
         return grab_page('contact', {'form': ContactForm()})
 
+
 @app.route('/<path:path>')
 def grab_page(path, extra_context=None):
     ''' General purpose handler for individual page requests '''
@@ -52,9 +56,9 @@ def grab_page(path, extra_context=None):
         'content': fetch_markdown(path),
         'page_details': get_page_details(path)
     }, **extra_context if extra_context else {})
-    
-    return render_template_and_markdown('page.html',
-        ('blurb', 'footer'), context)
+
+    return render_template_and_markdown(
+            'page.html', ('blurb', 'footer'), context)
 
 
 if __name__ == '__main__':

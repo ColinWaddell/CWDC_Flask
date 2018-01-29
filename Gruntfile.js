@@ -38,7 +38,15 @@ module.exports = function (grunt) {
         },
         shell: {
             flaskRun: {
-                command: '/bin/bash -c "source env/bin/activate && python index.py"',
+                command: 'env/bin/python index.py"',
+                options: {
+                  stdout: true,
+                  failOnError: true,
+                  async: true
+                }
+            },
+            flaskRunWindows: {
+                command: 'env\\Scripts\\python.exe index.py"',
                 options: {
                   stdout: true,
                   failOnError: true,
@@ -54,6 +62,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-browser-sync');
     grunt.loadNpmTasks('grunt-shell-spawn');
 
-    // define default task
+    // define developement tasts
     grunt.registerTask('default', ['shell:flaskRun', 'browserSync', 'watch']);
+    grunt.registerTask('windows', ['shell:flaskRunWindows', 'browserSync', 'watch']);
 };

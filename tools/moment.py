@@ -3,6 +3,7 @@
 from time import gmtime, strftime
 from jinja2 import Markup
 
+
 class Moment(object):
     ''' Handle dates and times in flask templates '''
     def __init__(self, timestamp=None):
