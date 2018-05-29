@@ -8,7 +8,7 @@ from wtforms import TextAreaField, SubmitField
 
 class ContactForm(FlaskForm):
     ''' Very basic contact form '''
-    message = TextAreaField("message", default="Please include your contact details.")
+    message = TextAreaField("message", default="...be sure to include your contact details")
     submit = SubmitField("send")
 
 
