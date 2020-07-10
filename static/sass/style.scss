@@ -1,7 +1,10 @@
 $orange : #e2ac67;
 $blue : #0fa0db;
-$lightBlue : #c9e6f1;
+$lightBlue : rgba(201,230,241,1);
+$lightPink : rgba(234,201,241,1);
 $darkBlue: #2a6496;
+$lightPurple: #b76fb2;
+$darkPurple: #62169a;
 
 @font-face {
 	font-family: 'BariolRegular';
@@ -17,13 +20,21 @@ $darkBlue: #2a6496;
 
 body {
   background: $lightBlue;
+  background: linear-gradient(90deg, $lightPink 0%, $lightBlue 33%);
   font-family: 'BariolRegular';
   font-size: 20px;
 }
 
+a {
+  color: $darkPurple;
+  &:hover{
+    color: $lightPurple;
+  }
+}
+
 hr {
   border: 0;
-  border-bottom: 2px dashed $orange;
+  border-bottom: 2px dashed $lightPurple;
   &.short {
     margin: 12px 0;
   }
@@ -92,14 +103,14 @@ footer {
 }
 
 @keyframes blink {  
-  0% { background: $blue; }
-  50% { background: $lightBlue; }
-  100% { background: $blue; }
+  0% { background: $darkPurple; }
+  50% { background: rgba(0,0,0,0); }
+  100% { background: $darkPurple; }
 }
 @-webkit-keyframes blink {
-  0% { background: $blue; }
-  50% { background: $lightBlue; }
-  100% { background: $blue; }
+  0% { background: $darkPurple; }
+  50% { background: rgba(0,0,0,0); }
+  100% { background: $darkPurple; }
 }
 
 .page-details {
