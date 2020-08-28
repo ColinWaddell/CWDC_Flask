@@ -1,7 +1,6 @@
 ## Projects
  - [my blog](https://blog.colinwaddell.com/)
  - [currant pi](http://currantpi.colinwaddell.com/)
- - [apple tv guide](https://github.com/ColinWaddell/AppleTVGuide)
- - [facetache](https://github.com/ColinWaddell/FaceTache)
+ - [my virtual mitchell](http://vm.colinwaddell.com/)
  - [satellite tracker](http://ukube.colinwaddell.com)
  - [this site](https://github.com/ColinWaddell/CWDC_Flask)
